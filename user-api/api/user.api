@@ -1,0 +1,25 @@
+syntax = "v1"
+
+info(
+	title: "user"
+	desc: "演示goctl api用例"
+	author: "zuncle"
+	email: "34310384@qq.com"
+	version: "v1"
+	date: "2023-2-10"
+)
+
+type UserInfoReq {
+	UserId int64 `json:"userId" in:"path" name:"userId" desc:"用户id"`
+}
+
+type UserInfoResp {
+	UserId   int64  `json:"userId" in:"body" name:"userId" desc:"用户id"`
+	NickName string `json:"nickName" in:"body" name:"nickName" desc:"昵称"`
+}
+
+service user-api {
+	@doc "获取用户信息"
+	@handler handlerGetUserInfo
+	get /users/info (UserInfoReq) returns (UserInfoResp)
+}
