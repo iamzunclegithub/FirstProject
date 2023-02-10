@@ -1,0 +1,14 @@
+type Request {
+	Name string `path:"name"`
+}
+
+type Response {
+	Message string `json:"message"`
+}
+
+service user-api {
+	@handler UserHandler
+	get /from/:name(Request) returns (Response)
+}
+
+// goctl api go -api user.api -dir .
